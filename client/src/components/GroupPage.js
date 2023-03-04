@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Outlet } from "react-router-dom";
-import PostForm from './PostForm';
-import GroupCard from './GroupCard';
+import React from 'react';
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from 'recoil';
+import { groupStateAtom } from '../atom';
 
 
-function GroupPage({groups, currentUser }){
+
+const GroupPage = () => {
     const navigate = useNavigate()
-
-    function createGroupCards(){
-        return groups.map(group => <GroupCard key={group.id} group={group}/>)
-    } 
+    const [group, setGroup] = useRecoilState(groupStateAtom)
 
     function handleHome(){
         // TODO: useEffect to clear side effect: clearing group
-        // setGroup({})
-        navigate('/home')
+        setGroup({})
+        navigate('/')
     }
 
     return(
         <div className='Group-page'>
-            {/* list of groups */}
-            {createGroupCards()}
-        
-            <Outlet context={[currentUser]}/>
+            <h1>{group.name}</h1>
+            <p>{group.description}</p>
             <button className='button' onClick={handleHome}>Return to HomePage</button>
         </div>
     )

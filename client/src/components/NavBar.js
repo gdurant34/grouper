@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link, useMatch, useResolvedPath, useNavigate } from 'react-router-dom';
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
-const Navbar = ({ currentUser, setCurrentUser }) => {
-    const navigate = useNavigate()
+const Navbar = () => {
 
     function CustomLink({ to, children, ...props }) {
         const resolvedPath = useResolvedPath(to)
-        const isActive = useMatch({ path: resolvedPath.pathname, end: true })
+        const isActive = useMatch({ path: resolvedPath.pathname, end:true })
         return (
             <li className={isActive ? "active" : ""}>
                 <Link to={to} {...props}>{children}</Link>
@@ -14,28 +13,12 @@ const Navbar = ({ currentUser, setCurrentUser }) => {
         )
     }
 
-    const handleLogout = () => {
-        fetch("/logout", {
-            method: "DELETE",
-        }).then(() => setCurrentUser(""))
-            .then(navigate("/"))
-    }
-
     return (
         <nav className="nav">
             <div className="site-title">Grouper</div>
             <ul>
-                {/* TODO: REDO HOMER -> MYGROUPER */}
-                {!currentUser ? <CustomLink to="/">Login</CustomLink>
-                    :
-                    <>
-                        <CustomLink>
-                            <button onClick={handleLogout}>Logout</button>
-                        </CustomLink>
-                        <CustomLink to="/home">Home</CustomLink>
-                        <CustomLink to="/groups">Groups</CustomLink>
-                    </>
-                }
+                <CustomLink to="/">Home</CustomLink>
+                <CustomLink to="/login">Login</CustomLink>
             </ul>
         </nav>
     )

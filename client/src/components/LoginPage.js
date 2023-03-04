@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import LoginForm from './LoginForm';
 import NewUserForm from './NewUserForm';
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { displayStateAtom } from "../atom";
 
-const LoginPage = ({ currentUser, setCurrentUser, login, setLogin }) => {
+
+const LoginPage = ({ currentUser, setCurrentUser }) => {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -12,8 +15,8 @@ const LoginPage = ({ currentUser, setCurrentUser, login, setLogin }) => {
         password: '',
         passwordConfirmation: ''
     })
-    const [errors, setErrors] = useState([])
-    const [display, setDisplay] = useState('login')
+    // const [errors, setErrors] = useState([])
+    const [display, setDisplay] = useRecoilState(displayStateAtom);
     const navigate = useNavigate()
 
     const handleChange = (e) => {
@@ -38,11 +41,12 @@ const LoginPage = ({ currentUser, setCurrentUser, login, setLogin }) => {
     const handleRender = () => {
         if (display === "login") {
             return <LoginForm
-                errors={errors}
-                setErrors={setErrors}
+                // errors={errors}
+                // setErrors={setErrors}
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
-                setLogin={setLogin}
+                // login={login}
+                // setLogin={setLogin}
                 navigate={navigate}
                 />
         } else if (display === "new") {
@@ -50,8 +54,8 @@ const LoginPage = ({ currentUser, setCurrentUser, login, setLogin }) => {
                 handleChange={handleChange}
                 formData={formData}
                 setFormData={setFormData}
-                errors={errors}
-                setErrors={setErrors}
+                // errors={errors}
+                // setErrors={setErrors}
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser} 
                 navigate={navigate}

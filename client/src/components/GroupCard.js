@@ -1,11 +1,16 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from 'recoil';
+import { groupStateAtom } from '../atom';
 
-function GroupCard({group}){
+
+const GroupCard = ({group}) => {
     const navigate = useNavigate()
+    const setGroup = useSetRecoilState(groupStateAtom)
 
-    function handleGroupPage(){
-        navigate(`${group.id}`)
+    const handleGroupPage = () => {
+        setGroup(group)
+        navigate('/group')
     }
 
     return(
