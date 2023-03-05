@@ -17,7 +17,7 @@ const GroupCard = ({group}) => {
         <div className='Group-card'>
             <div>
                 <h1>{group.name}</h1>
-                <p>{group.description}</p>
+                <p className='font-bold'>{group.description}</p>
                 <button className='button'>Join</button>
                 <button className='button' onClick={handleGroupPage}>go to group page</button>
             </div>
