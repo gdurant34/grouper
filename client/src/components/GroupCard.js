@@ -21,14 +21,14 @@ const GroupCard = ({ group }) => {
         </div>
 
         <div>
-          <button className="bg-blue-200 mr-2 rounded-md shadow-md px-3 py-1 transition-all animate hover:bg-blue-200 hover:text-blue-800">
+          <button className="bg-blue-200 mr-2 rounded-md shadow-md px-3 py-1 transition-all animate hover:bg-blue-200 hover:text-blue-800 hover:scale-105">
             Join
           </button>
           <button
-            className="bg-blue-200 mr-2 rounded-md shadow-md px-3 py-1"
+            className="bg-blue-200 mr-2 rounded-md shadow-md px-3 py-1 transition-all animate hover:bg-blue-200 hover:text-blue-800 hover:scale-105"
             onClick={handleGroupPage}
           >
-            go to group page
+            View
           </button>
         </div>
       </div>
